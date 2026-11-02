@@ -1,0 +1,53 @@
+name: Сборка PDF
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pdf
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Установить LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            texlive-xetex texlive-latex-extra texlive-lang-cyrillic \
+            texlive-fonts-recommended texlive-science lmodern fonts-lmodern
+
+      - name: Установить pandoc
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo jgm/pandoc --pattern '*-amd64.deb' --output pandoc.deb
+          sudo dpkg -i pandoc.deb
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Установить Python-пакеты
+        run: pip install -r requirements.txt
+
+      - name: Проверить главы и собрать PDF
+        run: python сборка/build.py --ci
+
+      - name: Выложить PDF в релиз «latest»
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest pdf/*.pdf \
+            --title "Свежая сборка" \
+            --notes "PDF собраны автоматически из ветки main, коммит ${GITHUB_SHA::7}." \
+            --latest

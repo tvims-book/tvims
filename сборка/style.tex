@@ -1,0 +1,78 @@
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{}{0pt}{}
+\usepackage[most]{tcolorbox}
+\definecolor{codebg}{HTML}{F6F8FA}
+\definecolor{codeframe}{HTML}{3B6EA8}
+\definecolor{outbg}{HTML}{FBF7EC}
+\definecolor{outframe}{HTML}{B5892B}
+\definecolor{rulebg}{HTML}{EEF6EE}
+\definecolor{ruleframe}{HTML}{3C8D4F}
+\newtcolorbox{codebox}{enhanced,breakable,colback=codebg,colframe=codeframe,boxrule=0pt,leftrule=2.5pt,arc=1pt,left=6pt,right=4pt,top=3pt,bottom=3pt,before skip=6pt,after skip=6pt,
+  overlay unbroken and first={\node[anchor=north east,font=\scriptsize\sffamily\color{codeframe},inner sep=3pt] at (frame.north east) {Python};}}
+\newtcolorbox{outbox}{enhanced,breakable,colback=outbg,colframe=outframe,boxrule=0pt,leftrule=2.5pt,arc=1pt,left=6pt,right=4pt,top=3pt,bottom=3pt,before skip=2pt,after skip=8pt,
+  overlay unbroken and first={\node[anchor=north east,font=\scriptsize\sffamily\color{outframe},inner sep=3pt] at (frame.north east) {вывод};}}
+\newtcolorbox{rulebox}{enhanced,breakable,colback=rulebg,colframe=ruleframe,boxrule=0pt,leftrule=2.5pt,arc=1pt,left=8pt,right=6pt,top=4pt,bottom=4pt,before skip=8pt,after skip=8pt}
+\usepackage{fvextra}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},breaklines,breakanywhere,fontsize=\small}
+\ifdefined\Shaded\renewenvironment{Shaded}{}{}\else\newenvironment{Shaded}{}{}\fi
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\small}
+\setlength{\parskip}{4pt}
+\newtcolorbox{plainbox}{enhanced,breakable,colback=codebg,colframe=codebg,boxrule=0pt,arc=1pt,left=6pt,right=4pt,top=3pt,bottom=3pt,before skip=6pt,after skip=6pt}
+\definecolor{inbg}{HTML}{F2F2F2}
+\definecolor{inframe}{HTML}{777777}
+\definecolor{solframe}{HTML}{2E7D4F}
+\definecolor{solbg}{HTML}{F3F9F4}
+\newtcolorbox{inbox}{enhanced,breakable,colback=inbg,colframe=inframe,boxrule=0pt,leftrule=2.5pt,arc=1pt,left=6pt,right=4pt,top=3pt,bottom=3pt,before skip=6pt,after skip=2pt,
+  overlay unbroken and first={\node[anchor=north east,font=\scriptsize\sffamily\color{inframe},inner sep=3pt] at (frame.north east) {ввод};}}
+\newtcolorbox{solbox}{enhanced,breakable,colback=solbg,colframe=solframe,boxrule=0pt,leftrule=2.5pt,arc=1pt,left=6pt,right=4pt,top=3pt,bottom=3pt,before skip=6pt,after skip=6pt,
+  overlay unbroken and first={\node[anchor=north east,font=\scriptsize\sffamily\color{solframe},inner sep=3pt] at (frame.north east) {решение};}}
+\setcounter{tocdepth}{2}
+\providecommand{\lt}{<}
+\providecommand{\gt}{>}
+\usepackage{newunicodechar}
+\newfontfamily\symfallback{DejaVuSans.ttf}[Path=\fontdir,Scale=0.9]
+\newunicodechar{★}{\text{\symfallback ★}}
+% Знак конца доказательства: два кубика в теории вероятностей, гистограмма в статистике.
+% Переключатель \qedstat ставит сборка (build.py) перед главами С.
+\newcommand{\qedpip}[2]{\fill (#1,#2) circle (0.075);}
+\newcommand{\qedframe}{\draw[line width=0.6pt,rounded corners=1.2pt] (0,0) rectangle (1,1);}
+\newcommand{\qeddice}{\tikz[scale=0.32,baseline=0]{\qedframe\qedpip{.25}{.25}\qedpip{.75}{.75}\qedpip{.25}{.75}\qedpip{.75}{.25}\qedpip{.5}{.5}}\,\tikz[scale=0.32,baseline=0]{\qedframe\qedpip{.5}{.5}}}
+\newcommand{\qedhist}{\tikz[baseline=0,scale=0.32]{\fill (0,0) rectangle (.22,.35);\fill (.27,0) rectangle (.49,1);\fill (.54,0) rectangle (.76,.65);\fill (.81,0) rectangle (1.03,.2);}}
+\newcommand{\qedmark}{\qeddice}
+\newcommand{\qedstat}{\renewcommand{\qedmark}{\qedhist}}
+\newunicodechar{∎}{\ifmmode\text{\qedmark}\else\qedmark\fi}
+\newunicodechar{⇒}{\text{\symfallback ⇒}}
+\newunicodechar{●}{\text{\symfallback ●}}
+\newunicodechar{↔}{\text{\symfallback ↔}}
+\newunicodechar{⟺}{\text{\symfallback ⟺}}
+\newunicodechar{⊃}{\text{\symfallback ⊃}}
+\newunicodechar{◇}{\text{\symfallback ◇}}
+\newunicodechar{∞}{\text{\symfallback ∞}}
+\newunicodechar{⁵}{\text{\symfallback ⁵}}
+\usepackage{amsmath,amssymb,mathtools}
+\newunicodechar{■}{\text{\symfallback ■}}
+\newunicodechar{□}{\text{\symfallback □}}
+\newunicodechar{✓}{\text{\symfallback ✓}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≤}{\ensuremath{\le}}
+\newunicodechar{≥}{\ensuremath{\ge}}
+\newunicodechar{≠}{\ensuremath{\ne}}
+\newunicodechar{→}{\ensuremath{\to}}
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{−}{\ensuremath{-}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{ξ}{\ensuremath{\xi}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{🔴}{\textcolor[HTML]{C0392B}{\text{\symfallback ●}}}
+\newunicodechar{🟡}{\textcolor[HTML]{D4A017}{\text{\symfallback ●}}}
+\newunicodechar{🟢}{\textcolor[HTML]{2E8B57}{\text{\symfallback ●}}}

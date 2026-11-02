@@ -1,0 +1,36 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Собрать PDF этой главы",
+      "type": "shell",
+      "command": "python",
+      "args": ["сборка/build.py", "${file}"],
+      "linux": { "command": "python3" },
+      "osx": { "command": "python3" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Проверить эту главу (без PDF)",
+      "type": "shell",
+      "command": "python",
+      "args": ["сборка/build.py", "--check", "${file}"],
+      "linux": { "command": "python3" },
+      "osx": { "command": "python3" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Собрать всю книгу",
+      "type": "shell",
+      "command": "python",
+      "args": ["сборка/build.py", "--all"],
+      "linux": { "command": "python3" },
+      "osx": { "command": "python3" },
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ]
+}
