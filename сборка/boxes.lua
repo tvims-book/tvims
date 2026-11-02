@@ -16,3 +16,16 @@ function BlockQuote(b)
   return {raw('\\begin{rulebox}')} .. b.content .. {raw('\\end{rulebox}')}
 end
 function HorizontalRule() return {} end
+local DIVS = {
+  ['определение'] = 'defbox', ['теорема'] = 'thmbox', ['пример'] = 'exbox',
+  ['ошибка'] = 'errbox', ['проверь-себя'] = 'chkbox',
+  definition = 'defbox', theorem = 'thmbox', example = 'exbox', mistake = 'errbox', check = 'chkbox',
+}
+function Div(d)
+  for _, c in ipairs(d.classes) do
+    local env = DIVS[c]
+    if env then
+      return {raw('\\begin{' .. env .. '}')} .. d.content .. {raw('\\end{' .. env .. '}')}
+    end
+  end
+end

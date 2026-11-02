@@ -76,3 +76,16 @@
 \newunicodechar{🔴}{\textcolor[HTML]{C0392B}{\text{\symfallback ●}}}
 \newunicodechar{🟡}{\textcolor[HTML]{D4A017}{\text{\symfallback ●}}}
 \newunicodechar{🟢}{\textcolor[HTML]{2E8B57}{\text{\symfallback ●}}}
+
+% Цветные блоки по типам (в Markdown: ::: определение ... ::: и т. п., см. boxes.lua).
+\definecolor{defbg}{HTML}{EAF2FB}\definecolor{defframe}{HTML}{2F6FB0}
+\definecolor{thmbg}{HTML}{EEF6EE}\definecolor{thmframe}{HTML}{3C8D4F}
+\definecolor{exbg}{HTML}{F7F7F7}\definecolor{exframe}{HTML}{8A8A8A}
+\definecolor{errbg}{HTML}{FCEDEA}\definecolor{errframe}{HTML}{C0392B}
+\definecolor{chkbg}{HTML}{F3EEF9}\definecolor{chkframe}{HTML}{7D4FB0}
+\tcbset{typebox/.style={enhanced,breakable,boxrule=0pt,leftrule=2.5pt,arc=1pt,left=8pt,right=6pt,top=4pt,bottom=4pt,before skip=8pt,after skip=8pt}}
+\newtcolorbox{defbox}{typebox,colback=defbg,colframe=defframe}
+\newtcolorbox{thmbox}{typebox,colback=thmbg,colframe=thmframe}
+\newtcolorbox{exbox}{typebox,colback=exbg,colframe=exframe}
+\newtcolorbox{errbox}{typebox,colback=errbg,colframe=errframe}
+\newtcolorbox{chkbox}{typebox,colback=chkbg,colframe=chkframe}
